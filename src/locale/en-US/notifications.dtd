@@ -1,0 +1,17 @@
+<!ENTITY extensions.html5notifications.alertBox.ignore "Ignore">
+<!ENTITY extensions.html5notifications.alertBox.options "Options">
+<!ENTITY extensions.html5notifications.alertBox.options.global "Global options">
+<!ENTITY extensions.html5notifications.alertBox.disable.from "Disable notifications from">
+<!ENTITY extensions.html5notifications.alertBox.from "from">
+
+<!ENTITY extensions.html5notifications.settings.title "HTML5 Notifications settings">
+<!ENTITY extensions.html5notifications.settings.animationTime "Notification animation time :">
+<!ENTITY extensions.html5notifications.settings.animationTime.unit "ms (1000 ms = 1 second)">
+<!ENTITY extensions.html5notifications.settings.permissions.title "Notifications permissions :">
+<!ENTITY extensions.html5notifications.settings.permissions.filter "Filter :">
+<!ENTITY extensions.html5notifications.settings.permissions.site "Site">
+<!ENTITY extensions.html5notifications.settings.permissions.permission "Permission">
+<!ENTITY extensions.html5notifications.settings.permissions.remove "Remove selected permission">
+<!ENTITY extensions.html5notifications.settings.permissions.remove.all "Remove all permissions">
+<!ENTITY extensions.html5notifications.settings.permissions.private.on "Warning : private navigation mode is enabled. These authorizations and modifications are only valid within this session.">
+<!ENTITY extensions.html5notifications.settings.hideImages "Do not display images in notifications">

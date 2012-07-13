@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="chrome://html5notifications/content/alert/alert.css" ?>
+<?xml-stylesheet type="text/css" href="resource://gre/res/html.css" ?>
+<!DOCTYPE overlay SYSTEM "chrome://html5notifications/locale/notifications.dtd">
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml">
+  <window id="alertNotification">
+    <box class="alertBox" id="pxl-iframe-box">
+      <browser id="pxl-iframe" class="alertBox" type="content" />
+    </box>
+    <hbox align="center" id="pxl-actions">
+      <toolbarbutton id="pxl-close-button" oncommand="PXLH5NAlertWindow.uClose();" align="center" pack="center" label="&extensions.html5notifications.alertBox.ignore;" dir="reverse" />
+      <toolbarbutton label="&extensions.html5notifications.alertBox.options;" type="menu">
+        <menupopup position="after_end">
+          <menuitem id="pxl-notification-disable" label="&extensions.html5notifications.alertBox.disable.from; " oncommand="PXLH5NAlertWindow.disable();" />
+					<menuseparator />
+					<menuitem label="&extensions.html5notifications.alertBox.options.global;" oncommand="openDialog('chrome://html5notifications/content/settings/settings.xul', '', 'chrome,titlebar,toolbar,centerscreen,modal=no')" />
+        </menupopup>
+      </toolbarbutton>
+      <spacer flex="1" />
+      <label style="font-size: 87.5%;" id="pxl-notification-from" value="&extensions.html5notifications.alertBox.from; " crop="end" />
+    </hbox>
+    <html:iframe src="data:text/html," id="pxl-iframe-reflection" style="display: none;" type="content" />
+    <script type="application/x-javascript" src="chrome://html5notifications/content/alert/alert.js"/>
+  </window>
+</overlay>

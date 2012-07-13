@@ -1,0 +1,5 @@
+Update for new xpidl usage
+--Cette ligne, et les suivantes ci-dessous, seront ignorées--
+
+_M   components
+M    components/Makefile

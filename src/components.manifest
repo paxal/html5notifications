@@ -1,0 +1,16 @@
+# Bug BMO#725016 workaround
+
+# notification service
+interfaces components/nsIPXLNotificationService.xpt
+component {727c4b2c-fb16-4c51-bc9e-7d8499298837} components/nsIPXLNotificationService.js
+contract @paxal.net/html5notifications/notification-service;1 {727c4b2c-fb16-4c51-bc9e-7d8499298837}
+
+# notification
+interfaces components/nsIPXLNotification.xpt
+component {32f740e1-5355-4955-b51c-0f0604895a20} components/nsIPXLNotification.js
+contract @paxal.net/html5notifications/notification;1 {32f740e1-5355-4955-b51c-0f0604895a20}
+
+# notification center object
+interfaces components/nsIPXLNotificationCenter.xpt
+component {d931339b-60b1-4559-9459-a69ed1396561} components/nsIPXLNotificationCenter.js
+contract @paxal.net/html5notifications/notification-center;1 {d931339b-60b1-4559-9459-a69ed1396561}

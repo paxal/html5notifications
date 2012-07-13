@@ -1,0 +1,17 @@
+<!ENTITY extensions.html5notifications.alertBox.ignore "Ignorera">
+<!ENTITY extensions.html5notifications.alertBox.options "Alternativ">
+<!ENTITY extensions.html5notifications.alertBox.options.global "Globala alternativ">
+<!ENTITY extensions.html5notifications.alertBox.disable.from "Inaktivera aviseringar från">
+<!ENTITY extensions.html5notifications.alertBox.from "från">
+
+<!ENTITY extensions.html5notifications.settings.title "Inställningar för HTML5-aviseringar">
+<!ENTITY extensions.html5notifications.settings.animationTime "Visningstid:">
+<!ENTITY extensions.html5notifications.settings.animationTime.unit "ms (1000 ms = 1 s)">
+<!ENTITY extensions.html5notifications.settings.permissions.title "Aviseringsbehörigheter:">
+<!ENTITY extensions.html5notifications.settings.permissions.filter "Filter:">
+<!ENTITY extensions.html5notifications.settings.permissions.site "Webbplats">
+<!ENTITY extensions.html5notifications.settings.permissions.permission "Behörighet">
+<!ENTITY extensions.html5notifications.settings.permissions.remove "Ta bort markerad behörighet">
+<!ENTITY extensions.html5notifications.settings.permissions.remove.all "Ta bort alla behörigheter">
+<!ENTITY extensions.html5notifications.settings.permissions.private.on "Varning: Privat surfning-läget är aktiverat. Dessa auktoriseringar och ändringar är endast giltiga under denna session.">
+<!ENTITY extensions.html5notifications.settings.hideImages "Visa inte bilder i aviseringar">

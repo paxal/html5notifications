@@ -1,0 +1,60 @@
+window[pxlalert]
+{
+  -moz-border-radius: 5px;
+}
+
+#pxl-actions,
+#pxl-iframe-box
+{
+  display: none;
+}
+
+
+window[pxlalert] #pxl-iframe-box
+{
+  display: none;
+}
+
+window[pxlalert] .alertBox
+{
+  width: 300px!important;
+  height: auto!important;
+  max-height: 100px!important;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+window[pxlalert] .alertBox label
+{
+  color: #000;
+}
+
+window[pxlalert] #pxl-actions
+{
+  display: -moz-box;
+}
+
+#alertNotification[clickable="true"] {
+  cursor: inherit;
+}
+
+#pxl-close-button
+{
+  -moz-image-region: rect(3px, 13px, 13px, 3px);
+  list-style-image: url(chrome://html5notifications/content/icons/close.png);
+}
+
+#pxl-close-button .toolbarbutton-icon { -moz-margin-start: 4px; }
+
+/* HTML */
+#pxl-iframe
+{
+  border: none;
+}
+window[pxlalert=html] #pxl-iframe { overflow: auto; }
+window[pxlalert=html] #pxl-iframe-box
+{
+  display: block;
+}
+window[pxlalert=html] #alertBox { display: none; }
+window[pxlalert] #alertImage { max-height: 48px; max-width: 48px; }

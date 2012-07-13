@@ -1,0 +1,31 @@
+<html>
+<head><title>Notification test</title></head>
+<body>
+<script>
+function request()
+{
+  if(!window.webkitNotifications) { alert('error !'); }
+
+  window.webkitNotifications.requestPermission(
+    function()
+    {
+      //alert('got permission ' + window.webkitNotifications.checkPermission());
+      if(window.webkitNotifications.checkPermission() == 0)
+      {
+        show();
+      }
+    }
+  );
+}
+
+function show()
+{
+  var n = window.webkitNotifications.createNotification('https://addons.mozilla.org/favicon.ico', 'This is my title', 'This is my description');
+  n.show();
+}
+//window.addEventListener('load', show, false);
+</script>
+<div><button onclick="request();">Request</button></div>
+<div><button onclick="show();">Show</button></div>
+</body>
+</html>

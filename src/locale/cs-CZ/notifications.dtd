@@ -1,0 +1,17 @@
+<!ENTITY extensions.html5notifications.alertBox.ignore "Ignorovat">
+<!ENTITY extensions.html5notifications.alertBox.options "Nastavení">
+<!ENTITY extensions.html5notifications.alertBox.options.global "Globální nastavení">
+<!ENTITY extensions.html5notifications.alertBox.disable.from "Zakázat oznámení webu">
+<!ENTITY extensions.html5notifications.alertBox.from "pro web">
+
+<!ENTITY extensions.html5notifications.settings.title "Nastavení doplňku HTML5 Notifications">
+<!ENTITY extensions.html5notifications.settings.animationTime "Délka animace oznámení:">
+<!ENTITY extensions.html5notifications.settings.animationTime.unit "ms (1000 ms = 1 sekunda)">
+<!ENTITY extensions.html5notifications.settings.permissions.title "Povolení zobrazovat oznámení:">
+<!ENTITY extensions.html5notifications.settings.permissions.filter "Filtr:">
+<!ENTITY extensions.html5notifications.settings.permissions.site "Web">
+<!ENTITY extensions.html5notifications.settings.permissions.permission "Stav">
+<!ENTITY extensions.html5notifications.settings.permissions.remove "Odebrat vybraná povolení">
+<!ENTITY extensions.html5notifications.settings.permissions.remove.all "Odebrat všechna povolení">
+<!ENTITY extensions.html5notifications.settings.permissions.private.on "Upozornění: Je aktivováno anonymní prohlížení. Udělená povolení a další nastavení budou platná pouze v této relaci.">
+<!ENTITY extensions.html5notifications.settings.hideImages "Nezobrazovat obrázky v oznámeních">

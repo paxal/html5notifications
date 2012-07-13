@@ -1,0 +1,29 @@
+#include "nsISupports.idl"
+#include "nsIVariant.idl"
+#include "nsIDOMEvent.idl"
+
+[scriptable, uuid(32f740e1-5355-4955-b51c-0f0604895a20)]
+interface nsIPXLNotification : nsISupports
+{
+	// display methods
+	void show();
+	void cancel();
+	void close(); // cancel
+
+	// event handler attributes
+	attribute nsIVariant ondisplay;
+	attribute nsIVariant onerror;
+	attribute nsIVariant onclose;
+	attribute nsIVariant onshow;
+	attribute nsIVariant onclick;
+
+	attribute string dir;
+	attribute DOMString replaceId;
+
+  // Private use only
+	void init(in nsIVariant aWindow, in DOMString aIconUrl, in DOMString aTitle, in DOMString aBody);
+
+	void addEventListener(in string type, in nsIVariant listener, in boolean useCapture);
+	void removeEventListener(in string type, in nsIVariant listener, in boolean useCapture);
+	boolean dispatchEvent(in nsIDOMEvent evt);
+};

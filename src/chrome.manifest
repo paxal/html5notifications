@@ -1,0 +1,20 @@
+content html5notifications content/
+content html5notifications content/ contentaccessible=yes
+
+overlay chrome://browser/content/browser.xul         chrome://html5notifications/content/browserOverlay.xul
+overlay chrome://global/content/alerts/alert.xul         chrome://html5notifications/content/alert/alertOverlay.xul
+
+# Bug BMO#725016 Workaround
+manifest components.manifest
+
+# AMO notification center object has to be registered into window object
+# AMO @see http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification
+# AMO @abstract The NotificationCenter interface is available via the Window interface through the webkitNotifications property
+category JavaScript-global-property webkitNotifications @paxal.net/html5notifications/notification-center;1
+
+locale html5notifications en-US locale/en-US/
+locale html5notifications fr-FR locale/fr-FR/
+locale html5notifications es-ES locale/es-ES/
+locale html5notifications ru-RU locale/ru-RU/
+locale html5notifications sv-SE locale/sv-SE/
+locale html5notifications cs-CZ locale/cs-CZ/

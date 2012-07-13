@@ -1,0 +1,25 @@
+#include "nsISupports.idl"
+#include "nsIVariant.idl"
+#include "nsIXULWindow.idl"
+#include "nsIDOMWindow.idl"
+
+[scriptable, uuid(727c4b2c-fb16-4c51-bc9e-7d8499298837)]
+interface nsIPXLNotificationService : nsISupports
+{
+	// Tools used by notification or notification service
+	nsIXULWindow getXULWindowFromDOMWindow(in nsIDOMWindow aDOMWindow);
+	nsISupports getNotificationWindowFromUID(in string aUid);
+	nsISupports getNotificationWindowFromReplaceUID(in DOMString aUid);
+
+	long getPermission(in DOMString aHost);
+	long setPermission(in DOMString aHost, in long aPermission);
+
+	nsIVariant listPermissions();
+	void unsetPermission(in DOMString aHost);
+
+	PRInt32 Prefs_getInt(in string aPrefName);
+  boolean Prefs_hideImages();
+
+	void init();
+	boolean getPrivateBrowsingMode();
+};

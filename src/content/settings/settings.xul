@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!-- Extremely recommended to keep this css include!! -->
+<!DOCTYPE prefwindow SYSTEM "chrome://html5notifications/locale/notifications.dtd">
+<prefwindow id="settingsWnd"
+        title="&extensions.html5notifications.settings.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+				style="min-width: 400px;">
+
+	<script type="text/javascript" src="settings.js" />
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="pxl-notifications-bundle" src="chrome://html5notifications/locale/notifications.properties" />
+  </stringbundleset>
+
+	<prefpane id="main" orient="vertical">
+		<preferences>
+			<preference id="pref_animationTime" name="extensions.html5notifications.animationTime" type="int"/>
+			<preference id="pref_hideImages" name="extensions.html5notifications.hideImages" type="bool"/>
+		</preferences>
+
+		<hbox align="center">
+			<label control="animationTime" value="&extensions.html5notifications.settings.animationTime;" />
+			<textbox id="animationTime" preference="pref_animationTime" type="number" max="2000" min="100" increment="100" size="4" />
+			<label value="&extensions.html5notifications.settings.animationTime.unit;" />
+		</hbox>
+
+		<spacer style="height: .5em;" />
+		<label value="&extensions.html5notifications.settings.permissions.title;" />
+
+		<hbox align="center">
+			<label control="filter" value="&extensions.html5notifications.settings.permissions.filter;" />
+			<textbox id="filter" flex="1" oninput="PXLSettings.fillWithFilter(this.value);" />
+		</hbox>
+
+		<hbox id="privateBrowsingModeOn" pack="center">
+		  <description style="color: white; font-weight: bold; background-color: red; border: 1px solid red; padding: 3px; border-radius: 5px;">&extensions.html5notifications.settings.permissions.private.on;</description>
+		</hbox>
+
+		<listbox id="permissionsList">
+
+			<listhead>
+				<listheader label="&extensions.html5notifications.settings.permissions.site;" />
+				<listheader label="&extensions.html5notifications.settings.permissions.permission;"/>
+			</listhead>
+
+			<listcols>
+				<listcol flex="1"/>
+				<listcol/>
+			</listcols>
+
+			<!--
+					 <![CDATA[
+					   <listitem>
+							 <listcell label="George"/>
+							 <listcell label="House Painter"/>
+						 </listitem>
+					 ]]>
+			-->
+
+		</listbox>
+
+		<hbox>
+			<button label="&extensions.html5notifications.settings.permissions.remove;" oncommand="PXLSettings.unsetPermission();" />
+			<button label="&extensions.html5notifications.settings.permissions.remove.all;" oncommand="PXLSettings.unsetAllPermissions();" />
+		</hbox>
+
+		<spacer style="height: .5em;" />
+
+    <!-- Hide images ? -->
+    <hbox>
+      <checkbox control="hideImages" label="&extensions.html5notifications.settings.hideImages;" preference="pref_hideImages" />
+    </hbox>
+
+		<!-- Small fix to description size problem... -->
+		<spacer style="height: .5em;" />
+
+	</prefpane>
+
+</prefwindow>

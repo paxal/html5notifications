@@ -1,0 +1,17 @@
+<!ENTITY extensions.html5notifications.alertBox.ignore "Игнорировать">
+<!ENTITY extensions.html5notifications.alertBox.options "Настройки">
+<!ENTITY extensions.html5notifications.alertBox.options.global "Общие настройки">
+<!ENTITY extensions.html5notifications.alertBox.disable.from "Запретить уведомления от">
+<!ENTITY extensions.html5notifications.alertBox.from "от">
+
+<!ENTITY extensions.html5notifications.settings.title "Настройки HTML5 Notifications">
+<!ENTITY extensions.html5notifications.settings.animationTime "Продолжительность анимации уведомления:">
+<!ENTITY extensions.html5notifications.settings.animationTime.unit "мс (1000 мс = 1 секунда)">
+<!ENTITY extensions.html5notifications.settings.permissions.title "Разрешение уведомлений:">
+<!ENTITY extensions.html5notifications.settings.permissions.filter "Фильтр:">
+<!ENTITY extensions.html5notifications.settings.permissions.site "Сайт">
+<!ENTITY extensions.html5notifications.settings.permissions.permission "Статус">
+<!ENTITY extensions.html5notifications.settings.permissions.remove "Удалить выделенные сайты">
+<!ENTITY extensions.html5notifications.settings.permissions.remove.all "Удалить все сайты">
+<!ENTITY extensions.html5notifications.settings.permissions.private.on "Предупреждение: включён режим приватного просмотра. Эти разрешения и настройки действительны только в течение текущего сеанса.">
+<!ENTITY extensions.html5notifications.settings.hideImages "Не показывать изображения в сообщениях">

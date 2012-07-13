@@ -1,0 +1,26 @@
+#include "nsISupports.idl"
+#include "nsIPXLNotification.idl"
+#include "nsIDOMEventListener.idl"
+#include "nsIDOMGlobalPropertyInitializer.idl"
+
+[scriptable, function, uuid(651fa82f-d9cc-471a-8233-0b27972b5e41)]
+interface nsIPXLCallback : nsISupports
+{
+	void callback();
+};
+
+[scriptable, uuid(d931339b-60b1-4559-9459-a69ed1396561)]
+interface nsIPXLNotificationCenter : nsIDOMGlobalPropertyInitializer
+{
+	nsIVariant createNotification(in DOMString iconUrl, in DOMString title, in DOMString body);
+	nsIVariant createHTMLNotification(in DOMString url);
+	
+	// Permission values
+	const long PERMISSION_ALLOWED = 0;
+	const long PERMISSION_NOT_ALLOWED = 1;
+	const long PERMISSION_DENIED = 2;
+	
+	// Permission methods
+	long checkPermission();
+	void requestPermission([optional] in nsIPXLCallback callback);
+};
