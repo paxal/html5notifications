@@ -1,8 +1,10 @@
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
+const Ci = Components.interfaces;
+const Cr = Components.results;
+
 	/* nsIPXLNotificationService */
-const nsIPXLNS = Components.classes['@paxal.net/html5notifications/notification-service;1']
-	  .getService().QueryInterface(Components.interfaces.nsIPXLNotificationService);
+var nsIPXLNS = null;
 
 
 function NotificationCenter() {
@@ -19,7 +21,8 @@ NotificationCenter.prototype = {
 		var ifaces = new Array();
 		ifaces.push(Components.interfaces.nsIPXLNotificationCenter);
 		ifaces.push(Components.interfaces.nsIClassInfo);
-		ifaces.push(Components.interfaces.nsIDOMGlobalPropertyInitializer);
+		('nsIDOMGlobalPropertyInitializer' in Ci) && ifaces.push(Components.interfaces.nsIDOMGlobalPropertyInitializer);
+		ifaces.push(Components.interfaces.nsISupports);
 		count.value = ifaces.length;
 		return ifaces;
 	},
@@ -32,7 +35,21 @@ NotificationCenter.prototype = {
 		/* AMO @abstract The NotificationCenter interface is available via the Window interface through the webkitNotifications property */
 		{category: "JavaScript global property", entry: "webkitNotifications"}
 	],
-	QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsIPXLNotificationCenter,Components.interfaces.nsIClassInfo,Components.interfaces.nsIDOMGlobalPropertyInitializer]), 
+	QueryInterface: function(iid)
+  {
+    if (
+        iid.equals(Ci.nsISupports)
+        ||
+        iid.equals(Ci.nsIPXLNotificationCenter)
+        ||
+        iid.equals(Ci.nsIClassInfo)
+        ||
+        ('nsIDOMGlobalPropertyInitializer' in Ci && iid.equals(Ci.nsIDOMGlobalPropertyInitializer))
+    )
+      return this;
+
+    throw Cr.NS_ERROR_NO_INTERFACE;
+  },
 	win: null,
 	xulwin: null,
 	browser: null,
@@ -44,6 +61,9 @@ NotificationCenter.prototype = {
         },
 	init: function(aWindow)
 	{
+    if (!nsIPXLNS)
+      nsIPXLNS = Components.classes['@paxal.net/html5notifications/notification-service;1']
+          .getService().QueryInterface(Components.interfaces.nsIPXLNotificationService);
 		// Initialize target document window
 		this.win = aWindow;
 
@@ -61,8 +81,8 @@ NotificationCenter.prototype = {
 			}
 		}
 
-                // Unload me
-                this.win.addEventListener('unload', (function() { this.uninit(); }).bind(this), true);
+    // Unload me
+    this.win.addEventListener('unload', (function() { this.uninit(); }).bind(this), true);
 	},
 
 	checkPermission: function()
@@ -266,10 +286,14 @@ NotificationCenter.prototype = {
 
 };
 
+
 var components = [NotificationCenter];
 
+var NSGetFactory = null;
+var NSGetModule  = null;
+
 if (XPCOMUtils.generateNSGetFactory)
-	var NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
+	NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
 else
-	var NSGetModule = XPCOMUtils.generateNSGetModule(components);
+	NSGetModule = XPCOMUtils.generateNSGetModule(components);
 
