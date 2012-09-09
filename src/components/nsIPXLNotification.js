@@ -7,10 +7,13 @@ const CLASS_ID = Components.ID("32f740e1-5355-4955-b51c-0f0604895a20");
 const CLASS_NAME = "webkitNotifications class";
 const CONTRACT_ID = "@paxal.net/html5notifications/notification;1";
 
-const nsIPXLNS = Components.classes['@paxal.net/html5notifications/notification-service;1']
-  .getService().QueryInterface(Components.interfaces.nsIPXLNotificationService);
+var nsIPXLNS = null;
 
 function PXLNotification() {
+  if (!nsIPXLNS)
+    nsIPXLNS = Components.classes['@paxal.net/html5notifications/notification-service;1']
+        .getService().QueryInterface(Components.interfaces.nsIPXLNotificationService);
+
 	this.wrappedJSObject = this;
 }
 
@@ -36,6 +39,20 @@ PXLNotification.prototype = {
     if (!aIID.equals(Ci.nsIPXLNotification) && !aIID.equals(Ci.nsISupports) && !aIID.equals(Ci.nsIClassInfo) && !aIID.equals(Ci.nsIDOMEventTarget))
         throw Components.results.NS_ERROR_NO_INTERFACE;
     return this;
+  },
+
+  __exposedProps__: {
+    'ondisplay': 'rw',
+    'onclose': 'rw',
+    'onerror': 'rw',
+    'onclick': 'rw',
+
+    'replaceId': 'rw',
+    'dir': 'rw',
+
+    'show': 'r',
+    'close': 'r',
+    'cancel': 'r',
   },
 
   _ondisplay: null,
