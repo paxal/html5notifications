@@ -58,7 +58,7 @@ var PXLH5NAlertWindow =
 
 	init: function()
 	{
-		if(this.notificationType = this.isPXLH5NNotification())
+		if((this.notificationType = this.isPXLH5NNotification()))
 		{
       // Activate stylesheet
 			document.documentElement.setAttribute('pxlalert', this.notificationType);
