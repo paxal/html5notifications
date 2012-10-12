@@ -53,6 +53,10 @@ PXLNotification.prototype = {
     'show': 'r',
     'close': 'r',
     'cancel': 'r',
+
+    'addEventListener': 'r',
+    'removeEventListener': 'r',
+    'dispatchEvent': 'r',
   },
 
   _ondisplay: null,
