@@ -19,7 +19,6 @@ window[pxlalert] .alertBox
 {
   width: 300px!important;
   height: auto!important;
-  max-height: 100px!important;
   background-color: #fff;
   overflow: hidden;
 }
@@ -56,5 +55,13 @@ window[pxlalert=html] #pxl-iframe-box
 {
   display: block;
 }
-window[pxlalert=html] #alertBox { display: none; }
+window[pxlalert=html] #pxl-values { display: none; }
+window #alertBox { display: none; }
 window[pxlalert] #alertImage { max-height: 48px; max-width: 48px; }
+
+window[pxlalert] #pxl-values { color: #000; background-color: #fff; padding: .5em; }
+window[pxlalert] #pxl-image-container { height: 48px; width: 48px; }
+window[pxlalert] #pxl-image { max-height: 48px; max-width: 48px; }
+window[pxlalert] #pxl-title { font-weight: bold; font-size: 1.1em; margin: .2em; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 250px !important; }
+window[pxlalert] #pxl-text  { margin: .2em; line-height: 1.2em; height: 2.4em; width: 250px; overflow: hidden; text-overflow: ellipsis; }
+

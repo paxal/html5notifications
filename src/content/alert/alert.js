@@ -27,7 +27,7 @@ var PXLH5NAlertWindow =
 
 	focus: function()
 	{
-		gAlertListener.observe(null, 'alert-focus', gAlertCookie);
+		gAlertListener.observe(null, 'alertclickcallback', gAlertCookie);
 		this.uClose();
 	},
 
@@ -70,7 +70,7 @@ var PXLH5NAlertWindow =
 			// - ONCLICK document.documentElement.setAttribute('onclick', '');
 			window.addEventListener(
 				'click',
-				function(ev) {
+				(function(ev) {
 					var target = ev.target;
 					while(target)
 					{
@@ -80,18 +80,22 @@ var PXLH5NAlertWindow =
                 &&
                 'id' in target
                 &&
-                target.id == 'alertBox'
+                (
+                  target.id == 'alertBox'
+                  ||
+                  target.id == 'pxl-values'
+                )
                 &&
-                PXLH5NAlertWindow.notificationType != 'html'
+                this.notificationType != 'html'
             )
 						{
-							PXLH5NAlertWindow.focus();
+							this.focus();
 							break;
 						}
 						target = target.parentNode;
 					}
 					ev.stopPropagation();
-				},
+				}).bind(this),
 				true
 			);
 
@@ -129,6 +133,12 @@ var PXLH5NAlertWindow =
 					}
 					catch(e) { }
 				}
+        else
+        {
+          document.getElementById('pxl-image').setAttribute('src', window.arguments[0]);
+          document.getElementById('pxl-title').textContent = window.arguments[1];
+          document.getElementById('pxl-text').textContent = window.arguments[2];
+        }
 
 				var fromLabel = document.getElementById('pxl-notification-from');
 				if(fromLabel) fromLabel.value += host;
@@ -161,6 +171,7 @@ var PXLH5NAlertWindow =
 					try
 					{
 						PXLH5NAlertWindow.prefillAlertInfo();
+            // TBD window.setTimeout(function() { window.moveBy(0, -50); }, 0);
 					}
 					catch(e) { }
 

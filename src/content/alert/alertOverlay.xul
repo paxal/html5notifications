@@ -7,6 +7,15 @@
     <box class="alertBox" id="pxl-iframe-box">
       <browser id="pxl-iframe" class="alertBox" type="content" />
     </box>
+    <hbox id="pxl-values">
+      <vbox pack="center" align="center" id="pxl-image-container">
+        <image src="" id="pxl-image" />
+      </vbox>
+      <vbox>
+        <html:div id="pxl-title"></html:div>
+        <html:div id="pxl-text"></html:div>
+      </vbox>
+    </hbox>
     <hbox align="center" id="pxl-actions">
       <toolbarbutton id="pxl-close-button" oncommand="PXLH5NAlertWindow.uClose();" align="center" pack="center" label="&extensions.html5notifications.alertBox.ignore;" dir="reverse" />
       <toolbarbutton label="&extensions.html5notifications.alertBox.options;" type="menu">
