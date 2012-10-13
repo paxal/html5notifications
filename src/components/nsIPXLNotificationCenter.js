@@ -134,13 +134,65 @@ NotificationCenter.prototype = {
     var host = this.win.location.host;
 		var gBrowser = this.xulwin.gBrowser;
 
+    this._requestPermissionDoorHanger(gBrowser, host, callback) || this._requestPermissionToolbar(gBrowser, host, callback);
+
+		}catch(e){dump('PXLH5N Caught error : '+e);}
+  },
+
+  _requestPermissionDoorHanger: function(gBrowser, host, callback)
+  {
+    try
+    {
+      // Ask for permission
+      var message = this.getLocalizedString('onrequest.message', [host]);
+
+      var defaultButton = 
+      {
+        label: this.getLocalizedString('onrequest.allow'),
+        accessKey: this.getLocalizedString('onrequest.allow.accel'),
+        callback: function() { nsIPXLNS.setPermission(host, Components.interfaces.nsIPXLNotificationCenter.PERMISSION_ALLOWED); callback(); }
+      };
+      var extraButtons =
+      [
+        {
+          label: this.getLocalizedString('onrequest.deny'),
+          accessKey: this.getLocalizedString('onrequest.deny.accel'),
+          callback: function() { nsIPXLNS.setPermission(host, Components.interfaces.nsIPXLNotificationCenter.PERMISSION_DENIED); callback(); }
+        }
+      ];
+      var options = { 'popupIconURL': 'chrome://html5notifications/content/icons/logo-128.png' };
+
+      ((typeof PopupNotifications) == 'undefined') && Components.utils.import('resource://app/modules/PopupNotifications.jsm');
+      var notify =
+          new PopupNotifications(
+              gBrowser,
+              gBrowser.ownerDocument.getElementById("notification-popup"),
+              gBrowser.ownerDocument.getElementById("notification-popup-box"));
+
+      notify.show(
+          gBrowser.selectedBrowser,
+          'pxl-notification',
+          message,
+          null,
+          defaultButton,
+          extraButtons,
+          options
+      );
+
+      return true;
+    }
+    catch(e) { dump(e+"\n"); }
+    return false;
+  },
+
+  _requestPermissionToolbar: function(gBrowser, host, callback)
+  {
     // Ask for permission
     var message = this.getLocalizedString('onrequest.message', [host]);
 
     var nb = gBrowser.getNotificationBox(this.browser);
     var n = nb.getNotificationWithValue('pxl-notification');
     if(n) nb.removeNotification(n);
-    var onCancel = function() { callback(); };
     var buttons = [
       {
         label: this.getLocalizedString('onrequest.deny'),
@@ -157,7 +209,7 @@ NotificationCenter.prototype = {
                          'chrome://browser/skin/Info.png',
                           nb.PRIORITY_WARNING_HIGH, buttons);
 
-		}catch(e){dump('PXLH5N Caught error : '+e);}
+    return n;
   },
 
 	getLocalizedString: function(key, strArray)
