@@ -27,9 +27,14 @@ var PXLH5NAlertWindow =
 
 	focus: function()
 	{
-		gAlertListener.observe(null, 'alertclickcallback', gAlertCookie);
+    this.click();
 		this.uClose();
 	},
+
+  click: function()
+  {
+		gAlertListener.observe(null, 'alertclickcallback', gAlertCookie);
+  },
 
 	close: function()
 	{
@@ -89,7 +94,7 @@ var PXLH5NAlertWindow =
                 this.notificationType != 'html'
             )
 						{
-							this.focus();
+							this.click();
 							break;
 						}
 						target = target.parentNode;
