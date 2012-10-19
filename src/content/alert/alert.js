@@ -105,9 +105,15 @@ var PXLH5NAlertWindow =
 			);
 
 			// Close when we say it should close
-			this._animateCloseAlert = animateCloseAlert;
 			/* AMO Disable auto-close defined at chrome://global/content/alerts/alert.js */
-			window.animateCloseAlert = function() { /* disable auto-close */ }
+			this._animateCloseAlert = ('animateCloseAlert' in window) ? window.animateCloseAlert : function() { window.closeAlert(); };
+			window.animateCloseAlert = function() { /* disable auto-close */ };
+			
+			if ('onAlertLoad' in window)
+			{
+				var _onAlertLoad = window.onAlertLoad;
+				window.onAlertLoad = function() { _onAlertLoad(); document.getElementById('alertBox').removeAttribute('animate'); }
+			}
 
 			var gIFrame;
 			var gReflectionIFrame;
@@ -158,7 +164,7 @@ var PXLH5NAlertWindow =
 				// Do setTimeout using nsITimer
 				var timer = Components.classes["@mozilla.org/timer;1"]
 					.createInstance(Components.interfaces.nsITimer);
-				var callback = function() { gSlideIncrement = Math.ceil(gFinalSize*gSlideTime/animationTime); };
+				var callback = function() { if ('gFinalSize' in window) gSlideIncrement = Math.ceil(gFinalSize*gSlideTime/animationTime); };
 				timer.initWithCallback({'notify': callback}, 0, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
 			}
 
