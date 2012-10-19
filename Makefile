@@ -4,6 +4,8 @@ VERSION:=$(shell grep em:version src/install.rdf  | sed -r 's@.*>(.*)<.*@\1@')
 JS_FILES :=$(shell find src/content -name *.js)
 XML_FILES:=$(shell find src/ -name *.rdf)
 
+JS := $(shell ls -d1 `which js 2>/dev/null` ~/xulrunner-sdk/bin/xpcshell.exe 2> /dev/null | head -n1)
+
 .PHONY: clean $(JS_FILES) $(XML_FILES)
 
 xpi: clean components content
@@ -13,7 +15,7 @@ xpi: clean components content
 content: $(JS_FILES) $(XML_FILES)
 
 $(JS_FILES):
-	js -C $@
+	$(JS) -C $@
 	
 $(XML_FILES):
 	xmllint --noout $@
