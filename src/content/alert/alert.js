@@ -34,6 +34,7 @@ var PXLH5NAlertWindow =
   click: function()
   {
 		gAlertListener.observe(null, 'alertclickcallback', gAlertCookie);
+		this.uClose();
   },
 
 	close: function()

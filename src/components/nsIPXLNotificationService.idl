@@ -17,7 +17,7 @@ interface nsIPXLNotificationService : nsISupports
 	nsIVariant listPermissions();
 	void unsetPermission(in DOMString aHost);
 
-	PRInt32 Prefs_getInt(in string aPrefName);
+	long Prefs_getInt(in string aPrefName);
   boolean Prefs_hideImages();
 
 	void init();
