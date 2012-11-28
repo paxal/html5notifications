@@ -24,4 +24,4 @@ components:
 	$(MAKE) -C src/components
 
 clean:
-	rm -f $(XPI)
+	rm -f $(XPI) *.xpi $(shell find src/components -name '*.xpt')
