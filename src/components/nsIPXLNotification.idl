@@ -1,6 +1,7 @@
 #include "nsISupports.idl"
-#include "nsIVariant.idl"
 #include "nsIDOMEvent.idl"
+
+interface nsIVariant;
 
 [scriptable, uuid(32f740e1-5355-4955-b51c-0f0604895a20)]
 interface nsIPXLNotification : nsISupports

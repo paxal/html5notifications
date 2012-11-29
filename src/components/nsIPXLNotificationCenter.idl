@@ -1,7 +1,8 @@
 #include "nsISupports.idl"
 #include "nsIPXLNotification.idl"
-#include "nsIDOMEventListener.idl"
 #include "nsIDOMGlobalPropertyInitializer.idl"
+
+interface nsIVariant;
 
 [scriptable, function, uuid(651fa82f-d9cc-471a-8233-0b27972b5e41)]
 interface nsIPXLCallback : nsISupports
@@ -13,7 +14,7 @@ interface nsIPXLCallback : nsISupports
 interface nsIPXLNotificationCenter : nsIDOMGlobalPropertyInitializer
 {
 	nsIVariant createNotification(in DOMString iconUrl, in DOMString title, in DOMString body);
-	nsIVariant createHTMLNotification(in DOMString url);
+	/*nsIVariant createHTMLNotification(in DOMString url);*/
 	
 	// Permission values
 	const long PERMISSION_ALLOWED = 0;
