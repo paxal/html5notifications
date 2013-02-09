@@ -5,7 +5,10 @@ http://www.paulund.co.uk/playground/demo/html5-notification-api/
 http://demo.xpertdeveloper.com/html5-notification/
 
 Known issues :
-On linux, with libnotify installed, if there is an icon specified for the
+
+* On linux, with libnotify installed, if there is an icon specified for the
 notification, the notification is not shown, yet the extension has no feedback.
 Please check appropriate settings in extension setttings dialog.
+
+* On Mac OS X, you might need the Growl Extension
 
