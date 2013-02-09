@@ -209,12 +209,60 @@ PXLNotification.prototype = {
 		}
 		var cookieData = JSON.stringify(oCookieData);
 
-		Components.classes['@mozilla.org/alerts-service;1']
-			.getService(Components.interfaces.nsIAlertsService)
-			.showAlertNotification(this.iconUrl, this.title, this.body, false, cookieData, observer);
+    var self = this;
 
-		// Send event
-		this._sendEvent('display');
+    // Factorize code to send with specific icon
+    function sendWithIcon(iconUrl)
+    {
+      Components.classes['@mozilla.org/alerts-service;1']
+        .getService(Components.interfaces.nsIAlertsService)
+        .showAlertNotification(iconUrl, self.title, self.body, false, cookieData, observer);
+
+      // Send event
+      self._sendEvent('display');
+    }
+
+    // Icon issue with linux libnotify : only non-301 and/or png|jpg|gif shown
+    var ch = null;
+    try {
+    var ios = Components.classes["@mozilla.org/network/io-service;1"]
+                        .getService(Components.interfaces.nsIIOService);
+    ch = ios.newChannel(this.iconUrl, null, null).QueryInterface(Ci.nsIHttpChannel);
+    } catch(e) { ch = null; }
+
+    var iconListener = {
+      onDataAvailable: function() {},
+      onStartRequest: function() {},
+      onStopRequest: function()
+      {
+        // Completed
+        
+        // Read last Location: header to see if image has moved
+        var iconUrl = self.iconUrl;
+        try {
+        var lastLocation = ch && ch.getResponseHeader('Location');
+        if (lastLocation && lastLocation.length)
+          iconUrl = lastLocation;
+        }
+        catch(e) { }
+
+        // Read Content Type: do not show if not png/jpg/gif
+        try {
+          var contentType = ch && ch.getResponseHeader('Content-type');
+          if (!contentType.match(new RegExp('^image/(png|jpe?g|gif)$')))
+            iconUrl = '';
+        }
+        catch(e) { iconUrl = ''; }
+
+        sendWithIcon(iconUrl);
+      }
+    }
+
+    if (ch)
+      ch.asyncOpen(iconListener, null);
+    else
+      sendWithIcon(this.iconUrl);
+
 		}catch(e){dump('PXLH5N Caught error : '+e);this._sendEvent('error');}
 	},
 
